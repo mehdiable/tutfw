@@ -3,6 +3,8 @@
 namespace tutfw\base;
 
 
+use tutfw\vendor\tutfw\base\Error;
+use tutfw\vendor\tutfw\base\Response;
 use tutfw\vendor\tutfw\base\Url;
 
 /**
@@ -57,9 +59,11 @@ class UrlManager extends BaseObject
 			$path = preg_replace('/\//', '', $this->url->path, 1);
 			
 			if (!isset($this->rules[$path])) {
-				Error::page(404, 'Not found page');
+				echo Response::error(404, 'Not found page');
+				exit;
 			}
 			var_dump($this->rules[$path]);
+			die;
 			
 			$this->url->setController();
 			$this->url->setAction();
