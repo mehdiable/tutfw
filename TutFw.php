@@ -54,6 +54,9 @@ class TutFw
 	 */
 	public static function run(array $config)
 	{
+		if (defined('debug')) {
+			error_reporting(E_ALL);
+		}
 		self::init($config);
 		self::$urlManager = new UrlManager(self::$fw->urlManager);
 		return self::$urlManager->handler();
