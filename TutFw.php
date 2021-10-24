@@ -16,11 +16,8 @@ class TutFw
 	/** @var array Default url manager setting */
 	private static $defaultUrlManager = [
 		'class' => 'tutfw\base\UrlManager',
-		'default_url' => '',
-		'rules' => [
-//			'[regular_expression_rules]' => '<route>',
-			'[|/]' => 'site/index',
-		]
+		'controller' => 'site/index',
+		'rules' => []
 	];
 	
 	/**
@@ -58,9 +55,29 @@ class TutFw
 	public static function run(array $config)
 	{
 		self::init($config);
-		
 		self::$urlManager = new UrlManager(self::$fw->urlManager);
 		return self::$urlManager->handler();
+	}
+	
+	/**
+	 * Get root path
+	 *
+	 * @return mixed
+	 */
+	public static function getRootPath()
+	{
+		return strtr($_SERVER['DOCUMENT_ROOT'], ['/web' => '']);
+	}
+	
+	/**
+	 * Get the upper case of words with pattern
+	 *
+	 * @param string $words
+	 * @param string $pattern
+	 * @return string|null
+	 */
+	public static function ucWords(string $words, $pattern = '-_'): ?string {
+		return preg_replace("/[$pattern]/", '', ucwords($words, $pattern));
 	}
 	
 }

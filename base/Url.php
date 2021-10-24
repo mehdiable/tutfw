@@ -30,21 +30,19 @@ class Url extends BaseObject
 		parent::__construct($config);
 	}
 	
-	public function setController()
+	public function setController(string $controller): void
 	{
-		if (!empty($this->path)) {
-			
-		}
+		$this->controller = $controller;
 	}
 	
-	public function getController()
+	public function getController(): string
 	{
 		return $this->controller;
 	}
 	
-	public function setAction()
+	public function setAction(string $action)
 	{
-	
+		$this->action = $action;
 	}
 	
 	public function getAction()

@@ -20,23 +20,26 @@ class Response extends BaseObject
 		return json_encode($response);
 	}
 	
-	private static function setResponse($status, $data = [], $message = '', $code = 200)
+	private static function render($status, $data = [], $message = '', $code = 200)
 	{
-		return self::toJson(new Response([
+		http_response_code($code);
+		header('Content-Type: application/json; charset=utf-8');
+		echo self::toJson(new Response([
 			'code' => $code,
 			'message' => $message,
 			'status' => $status,
 			'data' => $data,
 		]));
+		exit;
 	}
 	
 	public static function success($data = [], $message = '', $code = 200)
 	{
-		return self::setResponse(self::STATUS_SUCCESS, $data, $message, $code);
+		return self::render(self::STATUS_SUCCESS, $data, $message, $code);
 	}
 	
 	public static function error($code = 400, $message = '', $data = [])
 	{
-		return self::setResponse(self::STATUS_ERROR, $data, $message, $code);
+		return self::render(self::STATUS_ERROR, $data, $message, $code);
 	}
 }
