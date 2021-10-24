@@ -64,6 +64,7 @@ class UrlManager extends BaseObject
 		if (method_exists($controller, 'beforeAction')) {
 			$controller->beforeAction();
 		}
+		
 		$controller->$action();
 		
 		if (method_exists($controller, 'afterAction')) {
