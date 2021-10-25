@@ -1,0 +1,19 @@
+{
+    "name": "tutfw/tutfw",
+    "description": "Tutfw framework",
+    "keywords": ["mongodb", "framework", "tutfw", "api"],
+    "homepage": "https://github.com/mehdiable/tutfw",
+    "authors": [
+        { "name": "Mehdi Mohammadnejad", "email": "mehdimn.mail@gmail.com" }
+    ],
+    "require": {
+        "php": "^8.0",
+        "mongodb/mongodb": "^1.9"
+    },
+    "autoload" : {
+        "psr-4": {
+            "tutfw\\": "",
+            "tutfw\\base\\": "base/"
+        }
+    }
+}

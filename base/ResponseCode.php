@@ -1,7 +1,7 @@
 <?php
 
 
-namespace tutfw\vendor\tutfw\base;
+namespace tutfw\base;
 
 
 class ResponseCode

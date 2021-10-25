@@ -1,11 +1,11 @@
 <?php
 
 
-namespace tutfw\vendor\tutfw\base;
+namespace tutfw\base;
 
 
 use tutfw\base\BaseObject;
-use tutfw\base\TutFw;
+use tutfw\TutFw;
 
 class Trans extends BaseObject
 {

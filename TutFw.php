@@ -1,6 +1,6 @@
 <?php
 
-namespace tutfw\base;
+namespace tutfw;
 
 /**
  * Global class for run the project
@@ -26,7 +26,7 @@ class TutFw
 	private static function init(array $config)
 	{
 		if (empty(self::$fw)) {
-			self::$fw = new BaseObject($config);
+			self::$fw = new base\BaseObject($config);
 		}
 		
 		if (!isset(self::$fw->urlManager)) {
@@ -48,17 +48,17 @@ class TutFw
 	
 	/**
 	 * @param array $config
-	 *
-	 * @todo MVC
-	 * @todo route to controller -> action
 	 */
 	public static function run(array $config)
 	{
 		if (defined('debug')) {
+			ini_set('xdebug.var_display_max_depth', 7);
+			ini_set('xdebug.var_display_max_children', 256);
+			ini_set('xdebug.var_display_max_data', 1024);
 			error_reporting(E_ALL);
 		}
 		self::init($config);
-		self::$urlManager = new UrlManager(self::$fw->urlManager);
+		self::$urlManager = new base\UrlManager(self::$fw->urlManager);
 		return self::$urlManager->handler();
 	}
 	

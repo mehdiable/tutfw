@@ -3,11 +3,7 @@
 namespace tutfw\base;
 
 
-use tutfw\vendor\tutfw\base\Error;
-use tutfw\vendor\tutfw\base\Response;
-use tutfw\vendor\tutfw\base\ResponseCode;
-use tutfw\vendor\tutfw\base\Trans;
-use tutfw\vendor\tutfw\base\Url;
+use tutfw\TutFw;
 
 /**
  * UrlManager
