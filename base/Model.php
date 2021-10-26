@@ -30,21 +30,21 @@ class Model extends BaseObject
 	protected $port = null;
 	private $uri = 'mongodb://';
 	protected $client = null;
-	
+
 	public function __construct()
 	{
-		$db = include_once TutFw::getRootPath() . '/conf/db.php';
+		$db = include TutFw::getRootPath() . '/conf/db.php';
 		parent::__construct($db);
 	}
-	
+
 	public function init()
 	{
 		$this->uri .= "{$this->user}:{$this->password}@{$this->host}:{$this->port}/{$this->database}";
-		
-		$this->client = new \MongoDB\Client($this->uri);
-		$this->getCollection();
+		if (!$this->client) {
+			$this->client = new \MongoDB\Client($this->uri);
+		}
 	}
-	
+
 	/**
 	 * @return \MongoDB\Collection
 	 */
@@ -54,8 +54,8 @@ class Model extends BaseObject
 		$database = $this->database;
 		return $this->client->$database->$collection;
 	}
-	
-	
+
+
 	/**
 	 * Finds a single document matching the query.
 	 *
@@ -68,7 +68,7 @@ class Model extends BaseObject
 	{
 		return $this->getCollection()->findOne($filter, $options);
 	}
-	
+
 	/**
 	 * Finds documents matching the query.
 	 *
@@ -81,7 +81,7 @@ class Model extends BaseObject
 	{
 		return $this->getCollection()->find($filter, $options);
 	}
-	
+
 	/**
 	 * Inserts one document.
 	 *
@@ -95,7 +95,7 @@ class Model extends BaseObject
 		$result = $this->getCollection()->insertOne($document, $options);
 		return $result->getInsertedId();
 	}
-	
+
 	/**
 	 * Inserts multiple documents.
 	 *
@@ -109,7 +109,7 @@ class Model extends BaseObject
 		$result = $this->getCollection()->insertMany($documents, $options);
 		return $result->getInsertedCount();
 	}
-	
+
 	/**
 	 * Updates at most one document matching the filter.
 	 *
@@ -124,7 +124,7 @@ class Model extends BaseObject
 		$result = $this->getCollection()->updateOne($filter, $update, $options);
 		return $result->getModifiedCount();
 	}
-	
+
 	/**
 	 * Updates all documents matching the filter.
 	 *
@@ -139,7 +139,7 @@ class Model extends BaseObject
 		$result = $this->getCollection()->updateMany($filter, $update, $options);
 		return $result->getModifiedCount();
 	}
-	
+
 	/**
 	 * Deletes at most one document matching the filter.
 	 *
@@ -153,7 +153,7 @@ class Model extends BaseObject
 		$result = $this->getCollection()->deleteOne($filter, $options);
 		return $result->getDeletedCount();
 	}
-	
+
 	/**
 	 * Deletes all documents matching the filter.
 	 *
