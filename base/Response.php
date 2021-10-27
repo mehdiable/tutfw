@@ -1,10 +1,9 @@
 <?php
 
-
 namespace tutfw\base;
 
-
 use tutfw\base\BaseObject;
+use tutfw\interfaces\IResponse;
 
 class Response extends BaseObject
 {
@@ -14,12 +13,12 @@ class Response extends BaseObject
 	public $status = null;
 	public $message = null;
 	public $data = null;
-	
+
 	private static function toJson(Response $response)
 	{
 		return json_encode($response);
 	}
-	
+
 	private static function render($status, $data = [], $message = '', $code = 200)
 	{
 		http_response_code($code);
@@ -32,13 +31,18 @@ class Response extends BaseObject
 		]));
 		exit;
 	}
-	
-	public static function success($data = [], $message = '', $code = 200)
+
+	public static function success(array $data = [], string $message = '', int $code = 200)
 	{
 		return self::render(self::STATUS_SUCCESS, $data, $message, $code);
 	}
-	
-	public static function error($code = 400, $message = '', $data = [])
+
+	public static function warning(string $message = '', array $data = [], int $code = 200)
+	{
+		return self::render(self::STATUS_SUCCESS, $data, $message, $code);
+	}
+
+	public static function error(int $code = 400, string $message = '', array $data = [])
 	{
 		return self::render(self::STATUS_ERROR, $data, $message, $code);
 	}
