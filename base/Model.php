@@ -1,8 +1,6 @@
 <?php
 
-
 namespace tutfw\base;
-
 
 use tutfw\TutFw;
 
@@ -55,6 +53,18 @@ class Model extends BaseObject
 		return $this->client->$database->$collection;
 	}
 
+	/**
+	 * Gets the number of documents matching the filter.
+	 *
+	 * @see CountDocuments::__construct() for supported options
+	 * @param array|object $filter  Query by which to filter documents
+	 * @param array        $options Command options
+	 * @return integer
+	 */
+	public function count(array $filter, array $options = [])
+	{
+		return $this->getCollection()->countDocuments($filter, $options);
+	}
 
 	/**
 	 * Finds a single document matching the query.
@@ -75,7 +85,7 @@ class Model extends BaseObject
 	 * @see http://docs.mongodb.org/manual/core/read-operations-introduction/
 	 * @param array|object $filter Query by which to filter documents
 	 * @param array $options Additional options
-	 * @return Cursor
+	 * @return \MongoDB\Driver\Cursor
 	 */
 	public function find(array $filter, array $options = [])
 	{
