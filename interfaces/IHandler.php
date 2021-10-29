@@ -15,10 +15,11 @@ interface IHandler
 	 *      'key' => $mixed_value
 	 *  ], 'Message text', HTTP_RESPONSE_CODE = 40x);
 	 * ```
-	 * @see \tutfw\base\Response::success()
+	 * @param array|null $data
 	 * @see \tutfw\base\Response::error()
 	 *
 	 * response as string of JSON
+	 * @see \tutfw\base\Response::success()
 	 */
-	public function handler(mixed $data = null);
+	public function handler(array $data = null);
 }
