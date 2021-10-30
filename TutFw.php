@@ -77,10 +77,30 @@ class TutFw
 	 *
 	 * @param string $words
 	 * @param string $pattern
+	 *
 	 * @return string|null
 	 */
-	public static function ucWords(string $words, $pattern = '-_'): ?string {
+	public static function ucWords(string $words, $pattern = '-_'): ?string
+	{
 		return preg_replace("/[$pattern]/", '', ucwords($words, $pattern));
+	}
+
+	/**
+	 * Get debug mode data when it is active
+	 *
+	 * @param \Exception $exception
+	 *
+	 * @return array|\Exception
+	 */
+	public static function getDebugMode(\Exception $exception): \Exception|array
+	{
+		return defined('debug') ? [
+			'code' => $exception->getCode(),
+			'message' => $exception->getMessage(),
+			'line' => $exception->getLine(),
+			'file' => $exception->getFile(),
+			'trace' => $exception->getTrace(),
+		] : [];
 	}
 
 }
