@@ -2,20 +2,29 @@
 
 namespace tutfw\base;
 
-use tutfw\interfaces\IJob;
-
 /**
  * Class Job
  * @package tutfw\base
  */
-class Job implements IJob
+class Job
 {
+	public function __construct(string $command)
+	{
+		$class = strtr(ucwords($command, ':'), [':' => '']) . 'Job';
+		if (class_exists("\\tutfw\\job\\" . $class)) {
+			$jobClass = "\\tutfw\\job\\" . $class;
+			$job = new $jobClass();
+			$job->run();
+		} else {
+			echo 'Job not found :( please check command name';
+		}
+	}
+	
 	/**
 	 * Run job
 	 */
 	public function run()
 	{
-		echo 'you must be override this method';
+		echo 'must be override this method';
 	}
 }
-
