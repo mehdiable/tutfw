@@ -24,7 +24,7 @@ class UrlManager extends BaseObject
 	/** @var Url */
 	public $url = null;
 
-	public function handler()
+	public function handle()
 	{
 		$this->makeUrl();
 		$this->parsePrettyUrlPath();

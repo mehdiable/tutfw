@@ -11,5 +11,5 @@ interface IMiddleware
 	 *
 	 * @return IHandler
 	 */
-	public static function handler(IHandler $handler);
+	public static function handle(IHandler $handler);
 }

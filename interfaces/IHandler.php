@@ -11,9 +11,9 @@ interface IHandler
 	 *      'key' => $mixed_value
 	 *  ], 'Message text', HTTP_RESPONSE_CODE = 20x);
 	 *
-	 *  tutfw\base\Response::error([
+	 *  tutfw\base\Response::error(HTTP_RESPONSE_CODE = 40x, 'Message text', [
 	 *      'key' => $mixed_value
-	 *  ], 'Message text', HTTP_RESPONSE_CODE = 40x);
+	 *  ]);
 	 * ```
 	 * @param array|null $data
 	 * @see \tutfw\base\Response::error()
@@ -21,5 +21,5 @@ interface IHandler
 	 * response as string of JSON
 	 * @see \tutfw\base\Response::success()
 	 */
-	public function handler(array $data = null);
+	public function handle(array $data = null);
 }

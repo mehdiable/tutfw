@@ -59,7 +59,7 @@ class TutFw
 		}
 		self::init($config);
 		self::$urlManager = new base\UrlManager(self::$fw->urlManager);
-		return self::$urlManager->handler();
+		return self::$urlManager->handle();
 	}
 
 	/**
