@@ -72,7 +72,7 @@ class Model extends BaseObject
 		try {
 			return $this->getCollection()->countDocuments($filter, $options);
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -91,7 +91,7 @@ class Model extends BaseObject
 		try {
 			return $this->getCollection()->findOne($filter, $options);
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -110,7 +110,7 @@ class Model extends BaseObject
 		try {
 			return $this->getCollection()->find($filter, $options);
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -130,7 +130,7 @@ class Model extends BaseObject
 			$result = $this->getCollection()->insertOne($document, $options);
 			return $result->getInsertedId();
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -150,7 +150,7 @@ class Model extends BaseObject
 			$result = $this->getCollection()->insertMany($documents, $options);
 			return $result->getInsertedCount();
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -171,7 +171,7 @@ class Model extends BaseObject
 			$result = $this->getCollection()->updateOne($filter, $update, $options);
 			return $result->getModifiedCount();
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -192,7 +192,7 @@ class Model extends BaseObject
 			$result = $this->getCollection()->updateMany($filter, $update, $options);
 			return $result->getModifiedCount();
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -212,7 +212,7 @@ class Model extends BaseObject
 			$result = $this->getCollection()->deleteOne($filter, $options);
 			return $result->getDeletedCount();
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 
@@ -232,7 +232,7 @@ class Model extends BaseObject
 			$result = $this->getCollection()->deleteMany($filter, $options);
 			return $result->getDeletedCount();
 		} catch (\Exception $exception) {
-			Response::error(500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
 }
