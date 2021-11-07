@@ -103,4 +103,15 @@ class TutFw
 		] : [];
 	}
 
+	/**
+	 * Get patch params of request, when request method is PATCH
+	 *
+	 * @return array
+	 */
+	public static function getPatchParams(): array
+	{
+		mb_parse_str(file_get_contents('php://input'), $_PATCH);
+		return $_PATCH;
+	}
+
 }
