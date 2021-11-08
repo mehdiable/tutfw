@@ -176,6 +176,28 @@ class Model extends BaseObject
 	}
 
 	/**
+	 * Updates at most one document matching the filter.
+	 *
+	 * @see http://docs.mongodb.org/manual/reference/command/update/
+	 *
+	 * @param array|object $filter Query by which to filter documents
+	 * @param array|object $update Update to apply to the matched document
+	 * @param array $options Command options
+	 *
+	 * @return int modified count
+	 */
+	public function replaceOne($filter, $update, array $options = [])
+	{
+		try {
+			$options['upsert'] = true;
+			$result = $this->getCollection()->updateOne($filter, $update, $options);
+			return $result->getUpsertedCount() ?: $result->getMatchedCount();
+		} catch (\Exception $exception) {
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+		}
+	}
+
+	/**
 	 * Updates all documents matching the filter.
 	 *
 	 * @see http://docs.mongodb.org/manual/reference/command/update/

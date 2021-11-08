@@ -107,9 +107,13 @@ class TutFw
 	 * Get patch params of request, when request method is PATCH
 	 *
 	 * @return array
+	 *
+	 * @TODO : set patch method ... when complete on server remove POST, else uncomment POST
 	 */
 	public static function getPatchParams(): array
 	{
+//		return $_POST ?? [];
+
 		mb_parse_str(file_get_contents('php://input'), $_PATCH);
 		return $_PATCH;
 	}
