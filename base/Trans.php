@@ -10,7 +10,7 @@ use tutfw\TutFw;
 class Trans extends BaseObject
 {
 	public static $lang = '';
-	
+
 	/**
 	 * Translate
 	 *
@@ -25,7 +25,11 @@ class Trans extends BaseObject
 		$filePath = "{$rootPath}/lang/" . TutFw::$fw->lang . "/{$file}.php";
 		$transArray = include(file_exists($filePath) ? $filePath
 			: "{$rootPath}/vendor/tutfw/lang/app.php");
-		
-		return $transArray[$key] ?? $key;
+
+		if (($translated = $transArray[$key]) && !empty($params)) {
+			$translated = strtr($translated, $params);
+		}
+
+		return $translated ?? $key;
 	}
 }

@@ -49,7 +49,7 @@ class Response extends BaseObject
 		return self::render(self::STATUS_ERROR, $data, $message, $code);
 	}
 
-	public static function redirect(array $data = [], int $code = 302, string $message = '')
+	public static function redirect(array $data = [], string $message = '', int $code = 302)
 	{
 		return self::render(self::STATUS_REDIRECT, $data, $message, $code);
 	}
