@@ -257,4 +257,29 @@ class Model extends BaseObject
 			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
 	}
+
+	/**
+	 * Executes an aggregation framework pipeline on the collection.
+	 *
+	 * Note: this method's return value depends on the MongoDB server version
+	 * and the "useCursor" option. If "useCursor" is true, a Cursor will be
+	 * returned; otherwise, an ArrayIterator is returned, which wraps the
+	 * "result" array from the command response document.
+	 *
+	 * @param array $pipeline List of pipeline operations
+	 * @param array $options Command options
+	 *
+	 * @return Traversable
+	 * @see Aggregate::__construct() for supported options
+	 *
+	 */
+	public function aggregate(array $pipeline, array $options = [])
+	{
+		try {
+			$result = $this->getCollection()->aggregate($pipeline, $options);
+			return $result;
+		} catch (\Exception $exception) {
+			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
+		}
+	}
 }
