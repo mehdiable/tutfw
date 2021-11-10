@@ -22,7 +22,8 @@ class Trans extends BaseObject
 	public static function t($file, $key, $params = [])
 	{
 		$rootPath = TutFw::getRootPath();
-		$filePath = "{$rootPath}/lang/" . TutFw::$fw->lang . "/{$file}.php";
+		$lang = (isset(TutFw::$fw->lang) ? TutFw::$fw->lang . '/' : '');
+		$filePath = "{$rootPath}/lang/{$lang}{$file}.php";
 		$transArray = include(file_exists($filePath) ? $filePath
 			: "{$rootPath}/vendor/tutfw/lang/app.php");
 
