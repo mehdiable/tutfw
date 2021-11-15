@@ -112,10 +112,10 @@ class TutFw
 	 */
 	public static function getPatchParams(): array
 	{
-//		return $_POST ?? [];
+		return $_POST ?? [];
 
-		mb_parse_str(file_get_contents('php://input'), $_PATCH);
-		return $_PATCH;
+//		mb_parse_str(file_get_contents('php://input'), $_PATCH);
+//		return $_PATCH;
 	}
 
 }
