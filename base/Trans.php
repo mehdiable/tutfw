@@ -27,10 +27,10 @@ class Trans extends BaseObject
 		$transArray = include(file_exists($filePath) ? $filePath
 			: "{$rootPath}/vendor/tutfw/lang/app.php");
 
-		if (($translated = $transArray[$key]) && !empty($params)) {
+		if (($translated = $transArray[$key] ?? $key) && !empty($params)) {
 			$translated = strtr($translated, $params);
 		}
 
-		return $translated ?? $key;
+		return $translated;
 	}
 }
