@@ -28,6 +28,8 @@ class Model extends BaseObject
 	protected $port = null;
 	private $uri = 'mongodb://';
 	protected $client = null;
+	protected $dateKeys = [];
+	protected $result = null;
 
 	public function __construct()
 	{
@@ -46,6 +48,12 @@ class Model extends BaseObject
 		if (!$this->client) {
 			$this->client = new \MongoDB\Client($this->uri);
 		}
+	}
+
+	private function unsetSecuredProperties()
+	{
+		unset($this->database, $this->collection, $this->user, $this->password,
+			$this->host, $this->port, $this->uri, $this->client);
 	}
 
 	/**
@@ -84,12 +92,14 @@ class Model extends BaseObject
 	 * @param array|object $filter Query by which to filter documents
 	 * @param array $options Additional options
 	 *
-	 * @return array|object|null
+	 * @return $this
 	 */
 	public function findOne(array $filter, array $options = [])
 	{
 		try {
-			return $this->getCollection()->findOne($filter, $options);
+			$this->result = $this->getCollection()->findOne($filter, $options);
+//			$this->unsetSecuredProperties();
+			return $this;
 		} catch (\Exception $exception) {
 			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
@@ -103,12 +113,14 @@ class Model extends BaseObject
 	 * @param array|object $filter Query by which to filter documents
 	 * @param array $options Additional options
 	 *
-	 * @return \MongoDB\Driver\Cursor
+	 * @return $this
 	 */
 	public function find(array $filter, array $options = [])
 	{
 		try {
-			return $this->getCollection()->find($filter, $options);
+			$this->result = $this->getCollection()->find($filter, $options);
+//			$this->unsetSecuredProperties();
+			return $this;
 		} catch (\Exception $exception) {
 			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
@@ -281,5 +293,15 @@ class Model extends BaseObject
 		} catch (\Exception $exception) {
 			Response::error(ResponseCode::E500, Trans::t('app', 'Failure on execute query.'), TutFw::getDebugMode($exception));
 		}
+	}
+
+	/**
+	 * Get returned data after executed query
+	 *
+	 * @return array
+	 */
+	public function getResult()
+	{
+		return $this->result;
 	}
 }

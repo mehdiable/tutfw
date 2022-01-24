@@ -53,7 +53,7 @@ class UrlManager extends BaseObject
 		}
 
 		$controller = new $controllerNamespace();
-		$action = $this->url->getAction() . 'Action';
+		$action = lcfirst(TutFw::ucwords($this->url->getAction())) . 'Action';
 		if (!method_exists($controller, $action)) {
 			Response::error(ResponseCode::E404, Trans::t('app', 'not_found_action'));
 		}
