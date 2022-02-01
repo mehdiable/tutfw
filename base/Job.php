@@ -19,9 +19,31 @@ class Job
 				echo "The run method is not defined\n";
 				exit;
 			}
+			$this->updateParams($job, $args);
 			$job->run($args);
 		} else {
 			echo "Job not found :( please check command name\n";
 		}
 	}
+
+	/**
+	 * Cast arguments to array
+	 *
+	 * @param $args
+	 */
+	private function updateParams($job, &$args): void
+	{
+		$_params = [];
+		foreach ($args as $param) {
+			if (isset($job->args)) {
+				foreach ($job->args as $arg) {
+					if (preg_match("/{$arg}/i", $param, $matches)) {
+						$_params[strtr($arg, ['--' => '', '=' => ''])] = strtr($param, [$arg => '']);
+					}
+				}
+			}
+		}
+		$args = $_params;
+	}
+
 }

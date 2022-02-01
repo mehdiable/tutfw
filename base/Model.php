@@ -29,6 +29,7 @@ class Model extends BaseObject
 	private $uri = 'mongodb://';
 	protected $client = null;
 	protected $dateKeys = [];
+	/** @var array|null|object */
 	protected $result = null;
 
 	public function __construct()
