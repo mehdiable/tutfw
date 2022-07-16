@@ -7,6 +7,6 @@ TUTFW is PHP API base framework
  - git
 
 # Usage
-cd /path/to/make/project/
-git clone https://github.com/mehdiable/tutfw-project.git ./application
-docker stack deploy -c tut-compose.yml <your_app_name>
+ - cd /path/to/make/project/
+ - git clone https://github.com/mehdiable/tutfw-project.git ./application
+ - docker stack deploy -c tut-compose.yml <your_app_name>
