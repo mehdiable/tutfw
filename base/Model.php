@@ -38,9 +38,14 @@ class Model extends BaseObject
 		parent::__construct($db);
 	}
 
+	/**
+	 * Get new instance of the model
+	 * 
+	 * @return static
+	 */
 	public static function ins()
 	{
-//		return instance
+		return new static();
 	}
 
 	public function init()
