@@ -11,6 +11,7 @@ class Response extends BaseObject
 	const STATUS_WARNING = 'warning';
 	const STATUS_ERROR = 'error';
 	const STATUS_REDIRECT = 'redirect';
+	const STATUS_DUMP = 'dump';
 	public $code = null;
 	public $status = null;
 	public $message = null;
@@ -52,5 +53,10 @@ class Response extends BaseObject
 	public static function redirect(array $data = [], string $message = '', int $code = 302)
 	{
 		return self::render(self::STATUS_REDIRECT, $data, $message, $code);
+	}
+
+	public static function dump(array $data = [], string $message = '', int $code = 200)
+	{
+		return self::render(self::STATUS_DUMP, $data, $message, $code);
 	}
 }
