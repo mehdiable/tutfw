@@ -20,6 +20,7 @@ use tutfw\TutFw;
  */
 class Model extends BaseObject
 {
+	protected $connection = 'default';
 	protected $database = null;
 	protected $collection = null;
 	protected $user = null;
@@ -35,12 +36,12 @@ class Model extends BaseObject
 	public function __construct()
 	{
 		$db = include TutFw::getRootPath() . '/conf/db.php';
-		parent::__construct($db);
+		parent::__construct($db[$this->connection]);
 	}
 
 	/**
 	 * Get new instance of the model
-	 * 
+	 *
 	 * @return static
 	 */
 	public static function ins()
