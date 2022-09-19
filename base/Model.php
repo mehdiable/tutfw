@@ -82,7 +82,7 @@ class Model extends BaseObject
 	 * @return integer
 	 * @see CountDocuments::__construct() for supported options
 	 */
-	public function count(array $filter, array $options = [])
+	public function count(array $filter = [], array $options = [])
 	{
 		try {
 			return $this->getCollection()->countDocuments($filter, $options);
