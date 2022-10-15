@@ -48,6 +48,8 @@ class TutFw
 
 	/**
 	 * @param array $config
+	 *
+	 * @return null
 	 */
 	public static function run(array $config)
 	{
@@ -59,7 +61,7 @@ class TutFw
 		}
 		self::init($config);
 		self::$urlManager = new base\UrlManager(self::$fw->urlManager);
-		return self::$urlManager->handle();
+		self::$urlManager->handle();
 	}
 
 	/**
