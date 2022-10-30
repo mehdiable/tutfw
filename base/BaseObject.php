@@ -28,7 +28,7 @@ class BaseObject
 		}
 		$this->init();
 	}
-	
+
 	/**
 	 * Make BaseObject with the config
 	 *
@@ -36,15 +36,15 @@ class BaseObject
 	 * @param array $properties
 	 * @return mixed
 	 */
-	private function configure($object, $properties)
+	protected function configure($object, $properties)
 	{
 		foreach ($properties as $name => $value) {
 			$object->$name = $value;
 		}
-		
+
 		return $object;
 	}
-	
+
 	/**
 	 * Initialize method
 	 */
@@ -52,5 +52,5 @@ class BaseObject
 	{
 		// Initialize method
 	}
-	
+
 }
