@@ -2,6 +2,8 @@
 
 namespace tutfw\base;
 
+use MongoDB\Driver\Cursor;
+use MongoDB\Model\BSONDocument;
 use tutfw\TutFw;
 
 /**
@@ -305,7 +307,7 @@ class Model extends BaseObject
 	/**
 	 * Get returned data after executed query
 	 *
-	 * @return array
+	 * @return BSONDocument|Cursor
 	 */
 	public function getResult()
 	{
