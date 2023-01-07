@@ -23,6 +23,7 @@ use tutfw\TutFw;
 class Model extends BaseObject
 {
 	protected $connection = 'default';
+	protected $authDatabase= null;
 	protected $database = null;
 	protected $collection = null;
 	protected $user = null;
@@ -53,7 +54,11 @@ class Model extends BaseObject
 
 	public function init()
 	{
-		$this->uri .= "{$this->user}:{$this->password}@{$this->host}:{$this->port}/{$this->database}";
+		if (!empty($this->authDatabase)) {
+			$this->uri .= "{$this->user}:{$this->password}@{$this->host}:{$this->port}/{$this->authDatabase}";
+		} else {
+			$this->uri .= "{$this->user}:{$this->password}@{$this->host}:{$this->port}/{$this->database}";
+		}
 		if (!$this->client) {
 			$this->client = new \MongoDB\Client($this->uri);
 		}
