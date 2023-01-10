@@ -1,5 +1,6 @@
 {
     "name": "tutfw/tutfw",
+    "license": "MIT",
     "description": "Tutfw framework",
     "keywords": ["mongodb", "framework", "tutfw", "api"],
     "homepage": "https://github.com/mehdiable/tutfw",
