@@ -2,7 +2,7 @@
     "name": "tutfw/tutfw",
     "license": "MIT",
     "description": "Tutfw framework",
-    "keywords": ["mongodb", "framework", "tutfw", "api"],
+    "keywords": ["mongodb", "framework", "tutfw", "api", "microservice"],
     "homepage": "https://github.com/mehdiable/tutfw",
     "authors": [
         { "name": "Mehdi Mohammadnejad", "email": "mehdimn.mail@gmail.com" }
