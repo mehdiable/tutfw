@@ -18,20 +18,20 @@ class ModelTest extends \Codeception\Test\Unit
 			'default' => [
 				'authDatabase' => 'admin',
 				'driver' => 'mongodb',
-				'database' => 'farayad',
-				'collection' => 'action_logs',
-				'user' => 'farayad',
-				'password' => 'Farayad#5065',
-				'host' => '192.168.20.15',
+				'database' => 'tutfw',
+				'collection' => 'tutfw_collection',
+				'user' => 'tutfw_user',
+				'password' => 'tutfw_password',
+				'host' => '127.0.0.1',
 				'port' => '27017',
 			]
 		]);
 		$this->mysqlModel = new Model([
 			'default' => [
 				'driver' => 'mysql',
-				'database' => 'farayad',
-				'user' => 'farayad',
-				'password' => 'Farayad#5065',
+				'database' => 'tutfw',
+				'user' => 'tutfw_user',
+				'password' => 'tutfw_password',
 				'host' => '127.0.0.1',
 				'port' => '3306'
 			]
