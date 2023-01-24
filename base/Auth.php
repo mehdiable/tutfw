@@ -78,7 +78,7 @@ class Auth
 		$this->user = $this->getUserFromSession();
 		if (!$this->user) {
 			$this->user = $this->model->getUserByUsername($userModel->getUsername());
-			if (!$this->checkPassword($userModel->getPassword())) {
+			if (!$this->model->checkPassword($userModel->getPassword(), $this->user->getPassword())) {
 				return null;
 			}
 			$this->setUserSession();
@@ -98,18 +98,6 @@ class Auth
 			return null;
 		}
 		return $this->model->getUserByToken($token);
-	}
-
-	/**
-	 * Password checking
-	 *
-	 * @param string $password
-	 *
-	 * @return bool
-	 */
-	protected function checkPassword(string $password): bool
-	{
-		return ($this->model->getPasswordHash($password) == $this->user->getPassword());
 	}
 
 	/**

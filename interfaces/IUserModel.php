@@ -41,8 +41,9 @@ interface IUserModel
 	 * Get password hash. Make password hash by your security hashing method.
 	 *
 	 * @param string $password
+	 * @param string $hashedPassword
 	 *
 	 * @return string
 	 */
-	public function getPasswordHash(string $password): string;
+	public function checkPassword(string $password, string $hashedPassword): string;
 }
