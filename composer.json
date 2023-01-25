@@ -4,6 +4,10 @@
     "description": "Tutfw framework",
     "keywords": [
         "mongodb",
+        "mysql",
+        "mariadb",
+        "doctrine",
+        "dbal",
         "framework",
         "tutfw",
         "api",
