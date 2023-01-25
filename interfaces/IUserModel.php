@@ -45,5 +45,5 @@ interface IUserModel
 	 *
 	 * @return string
 	 */
-	public function checkPassword(string $password, string $hashedPassword): string;
+	public function checkPassword(string $password, string $hashedPassword): bool;
 }
