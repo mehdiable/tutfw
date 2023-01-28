@@ -166,7 +166,7 @@ class Auth
 	public function logout(): void
 	{
 		if ($this->getUserFromSession()) {
-			unset($_SESSION[self::AUTH_SESSION_KEY], $_SESSION[$_SESSION[self::AUTH_SESSION_KEY]]);
+			unset($_SESSION[$_SESSION[self::AUTH_SESSION_KEY]], $_SESSION[self::AUTH_SESSION_KEY]);
 		}
 	}
 
