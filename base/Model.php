@@ -56,6 +56,7 @@ class Model
 		$this->driver = $params['driver'] ?? $this->driver;
 		$driver = new DBDriverFactory($this->driver, $params);
 		$this->driverObj = $driver->getDriver();
+		$this->driverObj->customize($this);
 		return $this->driverObj;
 	}
 

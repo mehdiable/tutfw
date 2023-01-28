@@ -3,6 +3,7 @@
 namespace tutfw\db\drivers;
 
 use tutfw\base\DriverModel;
+use tutfw\base\Model;
 use tutfw\base\Response;
 use tutfw\base\ResponseCode;
 use tutfw\base\Trans;
@@ -34,6 +35,15 @@ class MongoDB extends DriverModel implements IModel
 		if (!$this->client) {
 			$this->client = new \MongoDB\Client($this->uri);
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function customize(Model $model): void
+	{
+		$this->collection = $model->collection ?? null;
+		$this->authDatabase = $model->authDatabase ?? null;
 	}
 
 	/**

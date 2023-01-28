@@ -6,6 +6,7 @@ use Doctrine\DBAL\Cache\QueryCacheProfile;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Result;
 use tutfw\base\DriverModel;
+use tutfw\base\Model;
 use tutfw\base\Response;
 use tutfw\base\ResponseCode;
 use tutfw\base\Trans;
@@ -31,6 +32,14 @@ class MySQL extends DriverModel implements IModel
 			];
 			$this->conn = DriverManager::getConnection($connectionParams);
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function customize(Model $model): void
+	{
+		// nothing to set
 	}
 
 	public function query(string $sql, array $params = [], $types = [], ?QueryCacheProfile $qcp = null): static
