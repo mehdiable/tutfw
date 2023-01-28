@@ -153,4 +153,16 @@ class Auth
 		return $this->getUserFromSession()->getId();
 	}
 
+	/**
+	 * Logout user
+	 *
+	 * @return void
+	 */
+	public function logout(): void
+	{
+		if ($this->getUserFromSession()) {
+			unset($_SESSION[self::AUTH_SESSION_KEY], $_SESSION[$_SESSION[self::AUTH_SESSION_KEY]]);
+		}
+	}
+
 }
