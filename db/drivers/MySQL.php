@@ -20,7 +20,7 @@ class MySQL extends DriverModel implements IModel
 {
 	protected ?\Doctrine\DBAL\Connection $conn = null;
 
-	public function init()
+	public function init(): void
 	{
 		if (!$this->conn) {
 			$connectionParams = [

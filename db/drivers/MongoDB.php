@@ -25,7 +25,7 @@ class MongoDB extends DriverModel implements IModel
 	protected ?string $uri = 'mongodb://';
 	protected ?string $collection = null;
 
-	public function init()
+	public function init(): void
 	{
 		if (!empty($this->authDatabase)) {
 			$this->uri .= "{$this->user}:{$this->password}@{$this->host}:{$this->port}/{$this->authDatabase}";
