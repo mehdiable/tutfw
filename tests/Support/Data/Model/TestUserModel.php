@@ -34,12 +34,12 @@ class TestUserModel implements IUserModel
 				'full_name' => 'Mehdi Mohammadnejad',
 			]
 		];
-		return new UserModel($user[$username] ?? []);
+		return isset($user[$username]) ? new UserModel($user[$username] ?? []) : null;
 	}
 
 	public function checkPassword(string $password, string $hashedPassword): bool
 	{
-		return crypt($password, 'salt');
+		return crypt($password, 'salt') == $hashedPassword;
 	}
 
 	public function getUserByToken(string $token): UserModel|false|null

@@ -42,8 +42,8 @@ class MongoDB extends DriverModel implements IModel
 	 */
 	public function customize(Model $model): void
 	{
-		$this->collection = $model->collection ?? null;
-		$this->authDatabase = $model->authDatabase ?? null;
+		$this->collection = $this->collection ?? $model->collection ?? null;
+		$this->authDatabase = $this->authDatabase ?? $model->authDatabase ?? null;
 	}
 
 	/**

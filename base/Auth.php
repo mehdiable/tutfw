@@ -78,7 +78,12 @@ class Auth
 		$this->user = $this->getUserFromSession();
 		if (!$this->user) {
 			$this->user = $this->model->getUserByUsername($userModel->getUsername());
-			if (!$this->model->checkPassword($userModel->getPassword(), $this->user->getPassword())) {
+			if (!$this->user) {
+				return  null;
+			}
+			$pass = $userModel->getPassword();
+			$hashedPass = $this->user->getPassword();
+			if (!$hashedPass || !$pass || !$this->model->checkPassword($userModel->getPassword(), $hashedPass)) {
 				return null;
 			}
 			$this->setUserSession();
