@@ -37,7 +37,7 @@ class TestUserModel implements IUserModel
 		return new UserModel($user[$username] ?? []);
 	}
 
-	public function getPasswordHash(string $password): string
+	public function checkPassword(string $password, string $hashedPassword): bool
 	{
 		return crypt($password, 'salt');
 	}
