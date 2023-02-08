@@ -28,6 +28,7 @@ class MySQL extends DriverModel implements IModel
 				'user' => $this->user,
 				'password' => $this->password,
 				'host' => $this->host,
+				'port' => $this->port,
 				'driver' => 'pdo_mysql',
 			];
 			$this->conn = DriverManager::getConnection($connectionParams);
