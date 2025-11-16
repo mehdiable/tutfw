@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "tutfw\\": "",
+            "tutfw\\": "./",
             "tutfw\\base\\": "base/"
         }
     },
