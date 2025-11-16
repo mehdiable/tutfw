@@ -35,30 +35,11 @@ class Model extends BaseObject
 	protected $dateKeys = [];
 	/** @var array|null|object */
 	protected $result = null;
-	public array $dynamicProperty = [];
 
 	public function __construct()
 	{
 		$db = include TutFw::getRootPath() . '/conf/db.php';
 		parent::__construct($db[$this->connection]);
-	}
-
-	public function &__get(string $name)
-	{
-		if (!isset($this->dynamicProperty[$name])) {
-			$this->dynamicProperty[$name] = null;
-		}
-		return $this->dynamicProperty[$name];
-	}
-
-	public function __set(string $name, $value): void
-	{
-		$this->dynamicProperty[$name] = $value;
-	}
-
-	public function __isset(string $name): bool
-	{
-		return isset($this->dynamicProperty[$name]);
 	}
 
 	/**

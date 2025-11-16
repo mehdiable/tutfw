@@ -16,6 +16,8 @@ namespace tutfw\base;
  */
 class BaseObject
 {
+	public array $dynamicProperty = [];
+	
 	/**
 	 * BaseObject constructor.
 	 *
@@ -51,6 +53,24 @@ class BaseObject
 	public function init()
 	{
 		// Initialize method
+	}
+
+	public function &__get(string $name)
+	{
+		if (!isset($this->dynamicProperty[$name])) {
+			$this->dynamicProperty[$name] = null;
+		}
+		return $this->dynamicProperty[$name];
+	}
+
+	public function __set(string $name, $value): void
+	{
+		$this->dynamicProperty[$name] = $value;
+	}
+
+	public function __isset(string $name): bool
+	{
+		return isset($this->dynamicProperty[$name]);
 	}
 
 }
